@@ -1,6 +1,8 @@
 # HDMI Audio Light
 
-A tiny Windows 11 taskbar widget for the **NVIDIA HDMI audio "Code 43" crash**: a status light that shows whether the GPU's HDMI audio controller is healthy, and resets it with one click.
+**Plugged your laptop back into the TV and the sound won't come through HDMI?** It plays from the laptop speakers instead, or the TV is missing from the sound output list, until you dig into Device Manager or reboot.
+
+This is a tiny Windows 11 taskbar widget for that problem. A light shows whether HDMI audio is working (green) or has crashed (red). One click brings it back, no reboot and no Device Manager.
 
 ```
  ● HDMI
@@ -13,9 +15,15 @@ A tiny Windows 11 taskbar widget for the **NVIDIA HDMI audio "Code 43" crash**: 
 | 🟡 amber | resetting |
 | ⚪ gray | controller not found |
 
-## The bug
+## The problem
 
-On hybrid-graphics laptops (built on a ThinkPad P72 / Quadro P600) the HDMI port is wired to the NVIDIA GPU. When a TV or monitor is unplugged, the GPU powers its audio controller down; on replug it often wakes up broken. Device Manager shows a **High Definition Audio Controller** with a yellow triangle and **Code 43**, and HDMI sound is gone. Driver swaps haven't fixed it. Disabling and re-enabling the controller does, every time. This widget does that for you.
+**What you notice:** you unplug the TV, later plug it back in, and the picture works but the sound doesn't. The TV doesn't appear as a sound output, or picking it does nothing.
+
+**What's actually happening:** on laptops with two graphics chips (this was built on a ThinkPad P72 with an NVIDIA Quadro P600), the HDMI port is run by the NVIDIA chip. When the TV is unplugged, that chip puts its sound part to sleep to save power, and sometimes it wakes up broken. Windows notices, gives up on it, and leaves it off.
+
+**How to confirm it:** in Device Manager → *System devices*, one of the two **High Definition Audio Controller** entries has a yellow warning triangle. Its properties say *"Windows has stopped this device because it has reported problems. (Code 43)."*
+
+**The fix:** turning that device off and on again (Disable, then Enable) brings the sound back every time. New drivers haven't fixed the underlying problem. This widget does the off-and-on for you with one click.
 
 ## Files
 
