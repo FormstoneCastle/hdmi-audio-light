@@ -1,6 +1,6 @@
 # HDMI Audio Light
 
-**Plugged your laptop back into the TV and the sound won't come through HDMI?** It plays from the laptop speakers instead, or the TV is missing from the sound output list, until you dig into Device Manager or reboot.
+**Plugged your laptop back into the TV and there's no TV sound?** The picture shows up and the laptop speakers still work, but the TV is missing from the sound output list. There's no *"[TV brand] (NVIDIA High Definition Audio)"* to pick, and it stays that way until you dig into Device Manager or reboot.
 
 This is a tiny Windows 11 taskbar widget for that problem. A light shows whether HDMI audio is working (green) or has crashed (red). One click brings it back, no reboot and no Device Manager.
 
@@ -17,7 +17,7 @@ This is a tiny Windows 11 taskbar widget for that problem. A light shows whether
 
 ## The problem
 
-**What you notice:** you unplug the TV, later plug it back in, and the picture works but the sound doesn't. The TV doesn't appear as a sound output, or picking it does nothing.
+**What you notice:** you unplug the TV, later plug it back in, and the picture works but there's no TV sound. The laptop speakers still play fine. The sound output list, where you'd normally see something like *"SAMSUNG (NVIDIA High Definition Audio)"*, has no TV option at all.
 
 **What's actually happening:** on laptops with two graphics chips (this was built on a ThinkPad P72 with an NVIDIA Quadro P600), the HDMI port is run by the NVIDIA chip. When the TV is unplugged, that chip puts its sound part to sleep to save power, and sometimes it wakes up broken. Windows notices, gives up on it, and leaves it off.
 
